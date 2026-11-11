@@ -89,8 +89,11 @@ enum SQLiteStructuredStore {
         defer { sqlite3_finalize(statement) }
 
         sqlite3_bind_text(statement, 1, key, -1, sqliteTransient)
-        payload.withUnsafeBytes { rawBuffer in
+        let bindResult = payload.withUnsafeBytes { rawBuffer in
             sqlite3_bind_blob(statement, 2, rawBuffer.baseAddress, Int32(rawBuffer.count), sqliteTransient)
+        }
+        guard bindResult == SQLITE_OK else {
+            throw ANNSError.constructionFailed("Failed to bind SQLite metadata payload: \(sqliteErrorMessage(db))")
         }
 
         guard sqlite3_step(statement) == SQLITE_DONE else {

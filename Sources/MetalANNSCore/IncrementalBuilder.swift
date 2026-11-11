@@ -61,7 +61,7 @@ public enum IncrementalBuilder {
             }
 
             let existingIDs = graph.neighborIDs(of: neighborIndex)
-            var existingDistances = graph.neighborDistances(of: neighborIndex)
+            let existingDistances = graph.neighborDistances(of: neighborIndex)
 
             if existingIDs.contains(UInt32(internalID)) {
                 continue

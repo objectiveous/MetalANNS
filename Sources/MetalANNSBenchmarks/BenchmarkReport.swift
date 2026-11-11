@@ -121,7 +121,7 @@ public struct BenchmarkReport: Sendable {
     }
 
     public func renderJSON() -> String {
-        var payload: [String: Any] = [
+        let payload: [String: Any] = [
             "datasetLabel": datasetLabel,
             "generatedAt": generatedAt,
             "metadata": metadata,

@@ -6,7 +6,6 @@ import Testing
 struct BackendProtocolTests {
     @Test("BackendFactory creates a backend without crashing")
     func backendCreation() async throws {
-        let backend = try BackendFactory.makeBackend()
-        #expect(backend != nil)
+        _ = try BackendFactory.makeBackend()
     }
 }

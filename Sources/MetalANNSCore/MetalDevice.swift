@@ -39,7 +39,9 @@ public final class MetalContext: @unchecked Sendable {
         do {
             return try device.makeDefaultLibrary(bundle: Bundle.module)
         } catch {
-            logger.warning("Falling back from Bundle.module default Metal library: \(error.localizedDescription)")
+            // Source-only resource packages intentionally have no default.metallib.
+            // Compilation failures below still propagate as construction errors.
+            logger.debug("Trying bundled shader sources after default library lookup: \(error.localizedDescription)")
         }
 
         if let library = device.makeDefaultLibrary() {

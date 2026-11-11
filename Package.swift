@@ -17,7 +17,7 @@ let package = Package(
     targets: [
         .target(
             name: "MetalANNSCore",
-            resources: [.process("Shaders")],
+            resources: [.copy("Shaders")],
             swiftSettings: [.swiftLanguageMode(.v6)]
         ),
         .target(

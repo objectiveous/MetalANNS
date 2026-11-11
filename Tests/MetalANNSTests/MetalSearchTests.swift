@@ -10,7 +10,7 @@ struct MetalSearchTests {
         _ body: (UnsafeBufferPointer<Float>) async throws -> T
     ) async throws -> T {
         let buffer = UnsafeMutableBufferPointer<Float>.allocate(capacity: values.count)
-        buffer.initialize(from: values)
+        _ = buffer.initialize(from: values)
         defer {
             buffer.deinitialize()
             buffer.deallocate()
